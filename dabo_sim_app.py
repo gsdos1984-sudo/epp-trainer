@@ -115,7 +115,13 @@ if sel == "Mold Setting" or st.session_state.get("_nav") == "Mold Setting":
             with cA:
                 st.write(f"**{code} {name}**")
             with cB:
-                st.session_state[key] = st.number_input(f"{name} (mm)", value=float(st.session_state[key]), step=0.5, min_value=0.0, max_value=300.0, key=key, label_visibility="collapsed")
+                val = st.number_input(
+    f"{name} (mm)",
+    value=float(st.session_state[key]),
+    step=0.5, min_value=0.0, max_value=300.0,
+    key=key,                     # el widget maneja st.session_state[key]
+    label_visibility="collapsed"
+)
 
             st.text_area(f"Note {code}", key=f"note_{code}", value=st.session_state['notes'].get(code, ""), height=60, label_visibility="collapsed", placeholder="Write a short tip…")
 
